@@ -2,3 +2,4 @@ django
 tornado
 pillow
 psycopg2
+python-dotenv
