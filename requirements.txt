@@ -1,0 +1,4 @@
+django
+tornado
+pillow
+psycopg2
