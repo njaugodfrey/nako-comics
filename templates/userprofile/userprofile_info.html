@@ -1,0 +1,40 @@
+<div class="">
+    <div class="">
+    <h5 class="">
+        {{ usr.get_full_name }} 
+        {% if usr.is_staff is True %}<i class="img-circle" aria-hidden="true"></i>{% endif %} 
+        <small id="">@{{ usr.username }}</small>
+    </h5>
+    <small>
+        {% if user.is_authenticated %}
+            
+            {% if user == usr.profile.user %}
+                <div class="profile-list">
+                    <button class="white"><a href="{% url 'userprofile:update-account' slug=usr.username pk=usr.pk %}">Edit account details</a></button>
+                    <button class="white"><a href="{% url 'userprofile:update-profile' slug=usr.username pk=usr.pk %}">Edit profile</a></button>
+                </div>
+            {% endif %}
+                
+        {% endif %}
+    </small>
+    <ul class="">
+        <li>
+            <p class="">{{ usr.profile.bio }}</p>
+        </li>
+        <li>
+            <i class="" aria-hidden="true"></i> 
+            <a href="http://maps.google.com/?q={{ usr.profile.location }}" target="_blank">{{ usr.profile.location }}</a>
+        </li>
+        <li><i class="" aria-hidden="true"></i> <a href="{{ usr.profile.website }}" target="_blank">{{ usr.profile.website }}</a></li>
+        <li><i class="" aria-hidden="true"></i> {{ usr.profile.date_birth }}</a></li>
+        </li>
+        
+        {% if user == usr.profile.user %}
+            <small>
+                <li><i class="" aria-hidden="true"></i> {{ usr.date_joined }}</a></li>
+                <li><i class="" aria-hidden="true"></i> Last Login: {{ usr.last_login }}</li>
+            </small>
+        {% endif %}
+    </ul>
+    </div>
+</div>

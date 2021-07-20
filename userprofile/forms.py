@@ -14,9 +14,6 @@ class SignUpForm(UserCreationForm):
 
 
 class UserProfileForm(forms.ModelForm):
-    header = forms.ImageField(required = False, 
-        widget=forms.FileInput(attrs={'class': 'form-control'})
-    )
     avatar = forms.ImageField(required = False, 
         widget=forms.FileInput(attrs={'class': 'form-control'})
     )
