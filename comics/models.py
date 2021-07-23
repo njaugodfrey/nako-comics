@@ -6,6 +6,18 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
+class ComicCategory(models.Model):
+    cat_name = models.CharField(
+        max_length=250, verbose_name='Category'
+    )
+
+
+class ComicType(models.Model):
+    type_name = models.CharField(
+        max_length=250, verbose_name='Type'
+    )
+
+
 class ComicSeries(models.Model):
     creator = models.ForeignKey(
         User, on_delete=models.CASCADE,
@@ -25,7 +37,16 @@ class ComicSeries(models.Model):
         max_length=250, verbose_name='Associated artists'
     )
     date_uploaded = models.DateTimeField(auto_now_add=True)
+    last_update = models.DateTimeField
     is_active = models.BooleanField(default=True)
+    com_category = models.ManyToManyField(
+        ComicCategory, null=True, blank=True,
+        verbose_name='Category'
+    )
+    com_type = models.ForeignKey(
+        ComicType,
+        verbose_name='Type'
+    )
     slug = models.SlugField(default='')
 
     class Meta:
