@@ -10,7 +10,11 @@ from .models import (
 class ComicSeriesForm(ModelForm):
     class Meta:
         model = ComicSeries
-        fields = '__all__'
+        fields = fields = [
+            'title', 'cover', 'description',
+            'other_artists', 'com_category',
+            'com_type'
+        ]
 
 
 class ComicIssueForm(ModelForm):

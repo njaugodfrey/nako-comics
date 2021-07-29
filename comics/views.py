@@ -2,14 +2,7 @@ from django.core import paginator
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage
 
-from .models import (
-    ComicSeries, ComicIssue, Comment,
-    IssuePanel, ComicType, ComicCategory
-)
-from .forms import (
-    ComicSeriesForm, ComicIssueForm,
-    CommentForm, IssuePanelForm
-)
+from .models import ComicSeries
 
 # Create your views here.
 
