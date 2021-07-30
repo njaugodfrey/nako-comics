@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 
@@ -40,12 +41,12 @@ class ComicSeries(models.Model):
     last_update = models.DateTimeField
     is_active = models.BooleanField(default=True)
     com_category = models.ManyToManyField(
-        ComicCategory, null=True, blank=True,
+        ComicCategory, blank=True,
         verbose_name='Category'
     )
     com_type = models.ForeignKey(
-        ComicType,
-        verbose_name='Type'
+        ComicType, verbose_name='Type',
+        on_delete=models.DO_NOTHING, null=True
     )
     slug = models.SlugField(default='')
 
@@ -76,7 +77,7 @@ class ComicIssue(models.Model):
         User, on_delete=models.CASCADE,
         verbose_name='Uploaded by: '
     )
-    title = models.ForeignKey(
+    series = models.ForeignKey(
         ComicSeries, on_delete=models.CASCADE,
         verbose_name='Series Title'
     )
@@ -91,13 +92,14 @@ class ComicIssue(models.Model):
         height_field=None, width_field=None, max_length=None
     )
     issue_description = models.TextField(
-        verbose_name='Description'
+        verbose_name='Description', blank=True, null=True
     )
     date_uploaded = models.DateTimeField(
-        auto_now_add=True, null=True
+        default=timezone.now
     )
     reaction = models.CharField(
-        max_length=250, choices=reaction_choices
+        max_length=250, choices=reaction_choices,
+        blank=True, null=True
     )
     is_active = models.BooleanField(default=True)
     issue_slug = models.SlugField(default='')

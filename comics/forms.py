@@ -20,7 +20,10 @@ class ComicSeriesForm(ModelForm):
 class ComicIssueForm(ModelForm):
     class Meta:
         model = ComicIssue
-        fields = '__all__'
+        fields = [
+            'issue', 'issue_title', 'issue_cover',
+            'issue_description', 
+        ]
 
 
 class CommentForm(ModelForm):
