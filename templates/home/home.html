@@ -1,0 +1,30 @@
+{% extends 'common/base.html' %}
+
+{% block title %}
+    Home
+{% endblock title %}
+    
+{% block body %}
+    <div class="series">
+        {% for series in series %}
+            <div class="item">
+                <li>{{series}}</li>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="categories">
+        {% for category in categories %}
+            <div class="item">
+                <li>{{category}}</li>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="types">
+        {% for type in types %}
+            <div class="item">
+                <li>{{type}}</li>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock body %}
+    
