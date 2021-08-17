@@ -1,7 +1,23 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+
+from comics.models import (
+    ComicSeries, ComicCategory, ComicType
+)
 
 # Create your views here.
 
-def index(request):
-    return HttpResponse('The project begins')
+def home(request):
+    series = ComicSeries.objects.all().order_by('-last_update')[:5]
+    categories = ComicCategory.objects.all()
+    comic_types = ComicType.objects.all()
+
+    context = {
+        'series': series,
+        'categories': categories,
+        'types': comic_types
+    }
+
+    return render(
+        request, template_name='home/home.html',
+        context=context
+    )

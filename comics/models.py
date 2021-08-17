@@ -8,12 +8,19 @@ from django.utils import timezone
 
 
 class ComicCategory(models.Model):
+    """
+    Categories based on the kind of comics
+    """
     cat_name = models.CharField(
         max_length=250, verbose_name='Category'
     )
 
 
 class ComicType(models.Model):
+    """
+    Kind of comics based on our internal classification system.
+    e.g., original comics, sponsored comics, fan comics
+    """
     type_name = models.CharField(
         max_length=250, verbose_name='Type'
     )
@@ -38,7 +45,7 @@ class ComicSeries(models.Model):
         max_length=250, verbose_name='Associated artists'
     )
     date_uploaded = models.DateTimeField(auto_now_add=True)
-    last_update = models.DateTimeField
+    last_update = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     com_category = models.ManyToManyField(
         ComicCategory, blank=True,
