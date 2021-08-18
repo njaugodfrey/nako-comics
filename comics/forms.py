@@ -1,17 +1,18 @@
 from django import forms
 from django.db import models
-from django.forms import ModelForm
+from django.db.models import fields
+from django.forms import ModelForm, widgets
 
 from .models import (
     ComicSeries, ComicIssue, Comment,
-    IssuePanel
+    IssuePanel, ComicCategory, ComicType
 )
 
 
 class ComicSeriesForm(ModelForm):
     class Meta:
         model = ComicSeries
-        fields = fields = [
+        fields = [
             'title', 'cover', 'description',
             'other_artists', 'com_category',
             'com_type'
@@ -64,3 +65,21 @@ class IssuePanelForm(ModelForm):
     class Meta:
         model = IssuePanel
         fields = '__all__'
+
+
+class CategoryForm(ModelForm):
+    class Meta:
+        model = ComicCategory
+        fields = ['cat_name']
+        widgets = {
+            'cat_name': forms.TextInput(attrs={'class': 'form-control'})
+        }
+    
+
+class TypeForm(ModelForm):
+    class Meta:
+        model = ComicType
+        fields = ['type_name']
+        widgets = {
+            'type_name': forms.TextInput(attrs={'class': 'form-control'})
+        }

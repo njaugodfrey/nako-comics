@@ -1,0 +1,42 @@
+{% extends 'common/base.html' %}
+
+{% block title %}
+    Comics Categories
+{% endblock title %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+{% endblock stylesheet %}
+    
+{% block body %}
+    <div class="col-md-auto">
+        <h3>Categories</h3>
+        <ul class="nav">
+            <li class="nav-item mb-3 ms-2">
+                <a href="{% url 'comics:create_category' %}">
+                    <button class="btn">
+                        <i class="bi bi-plus-square-fill"></i>
+                        Create
+                    </button>
+                </a>
+            </li>
+            <li class="nav-item mb-3 ms-2">
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn" type="submit">Search</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+    <div class="">
+        {% for category in categories %}
+            <div class="card mt-5 ms-2 me-2 " style="width: 18rem; float: left;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{category.cat_name}}</h5>
+                  <a href="{% url 'comics:view_category' pk=category.pk %}" class="btn">See Comics</a>
+                </div>
+              </div>
+        {% endfor %}
+    </div>
+{% endblock body %}

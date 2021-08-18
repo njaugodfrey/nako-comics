@@ -27,6 +27,17 @@
                         </ul>
                     </li>
                 </ul>
+                <ul class="nav justify-content-end">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Admin
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                            <li><a class="dropdown-item nav-link" href="{% url 'comics:all_categories' %}">Categories</a></li>
+                            <li><a class="dropdown-item nav-link" href="{% url 'comics:all_types' %}">Content Type</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
     </div>
 </nav>

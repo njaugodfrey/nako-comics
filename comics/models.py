@@ -14,6 +14,8 @@ class ComicCategory(models.Model):
     cat_name = models.CharField(
         max_length=250, verbose_name='Category'
     )
+    def __str__(self):
+        return '{}'.format(self.cat_name)
 
 
 class ComicType(models.Model):
@@ -24,6 +26,8 @@ class ComicType(models.Model):
     type_name = models.CharField(
         max_length=250, verbose_name='Type'
     )
+    def __str__(self):
+        return '{}'.format(self.type_name)
 
 
 class ComicSeries(models.Model):
