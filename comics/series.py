@@ -1,3 +1,4 @@
+from django.http.response import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.utils import timezone
 
@@ -5,17 +6,22 @@ from .models import ComicSeries, ComicIssue
 from .forms import ComicSeriesForm
 
 def create_series(request):
-    series_form = ComicSeriesForm(request.POST or None)
+    if request.method == 'POST':
+        series_form = ComicSeriesForm(request.POST or None, request.FILES or None)
 
-    if series_form.is_valid():
-        series_obj = series_form.save(commit=False)
-        series_obj.creator = request.user
-        series_obj.last_update = timezone.now()
-        series_obj.save()
-        return redirect(
-            'comics:view_series', slug= series_obj.slug,
-            pk=series_obj.pk
-        )
+        if series_form.is_valid():
+            print (series_form)
+            series_obj = series_form.save(commit=False)
+            series_obj.creator = request.user
+            series_obj.last_update = timezone.now()
+            series_obj.save()
+            return redirect(
+                'comics:view_series', slug= series_obj.slug,
+                pk=series_obj.pk
+            )
+    
+    else:
+        series_form = ComicSeriesForm(request.POST or None, request.FILES or None)
     
     context = {
         'series_form': series_form

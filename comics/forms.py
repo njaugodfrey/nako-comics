@@ -34,7 +34,7 @@ class ComicSeriesForm(ModelForm):
                 'id': 'other-artists',
                 'class': 'form-control'
             }),
-            'com_category': forms.Select(attrs={
+            'com_category': forms.SelectMultiple(attrs={
                 'id': 'category',
                 'class': 'form-control'
             }),
