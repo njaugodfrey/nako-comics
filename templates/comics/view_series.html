@@ -1,0 +1,36 @@
+{% extends 'common/base.html' %}
+
+{% block title %}
+    Comics | {{series.title}}
+{% endblock title %}
+
+{% block body %}
+    <div class="card" style="width: 18rem; float: left;">
+        <img src="{{ series.cover.url }}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{series.title}}</h5>
+          <p class="card-text">{{series.description}}</p>
+          <a href="{% url 'comics:new_issue' series.pk %}">
+                <button class="btn">
+                    <i class="bi bi-plus-square-fill"></i>
+                    Add New Issue
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="" style="float: right;">
+        {% for issue in issues %}
+            <div class="item">
+                <ol class="list-group list-group-numbered">
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                      <div class="ms-2 me-auto">
+                        <div class="fw-bold">{{issue.issue}}</div>
+                        {{issue.issue_title}}
+                      </div>
+                      <span class="badge bg-primary rounded-pill">{{count}}</span>
+                    </li>
+                </ol>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock body %}

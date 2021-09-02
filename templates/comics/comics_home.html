@@ -3,10 +3,6 @@
 {% block title %}
     Comics
 {% endblock title %}
-
-{% block stylesheet %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-{% endblock stylesheet %}
     
 {% block body %}
     <div class="col-md-auto">
@@ -29,9 +25,19 @@
     </div>
     <div class="">
         {% for comic in all_comics %}
-            <div class="item">
-                <li>{{comic}}</li>
-            </div>
+        <div class="item">
+            <ul class="list-group list-group-numbered">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                  <div class="ms-2 me-auto">
+                    <div class="fw-bold">
+                        <a href="{% url 'comics:view_series' comic.pk comic.slug %}">{{comic.title}}</a>
+                    </div>
+                    {{comic.description|truncatechars:50}}
+                  </div>
+                  <span class="badge bg-primary rounded-pill">{{count}}</span>
+                </li>
+            </ul>
+        </div>
         {% endfor %}
     </div>
 {% endblock body %}

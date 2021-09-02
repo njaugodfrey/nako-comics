@@ -59,10 +59,12 @@ def update_series(request, pk, slug):
 def view_series(request, pk, slug):
     series = get_object_or_404(ComicSeries, pk=pk)
     issues = ComicIssue.objects.filter(issue=series.id).select_related()
+    issue_count = ComicIssue.objects.filter(issue=series.id).select_related().count()
 
     context = {
         'series': series,
-        'issues': issues
+        'issues': issues,
+        'count': issue_count
     }
 
     return render(
