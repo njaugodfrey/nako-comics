@@ -8,6 +8,12 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     """Model definition for Profile."""
+    user_roles = (
+        ('admin', 'Admin'),
+        ('staff', 'staff'),
+        ('verified', 'verified'),
+        ('reader', 'reader')
+    )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(upload_to='avatar', default='avatar/default.png')
@@ -15,6 +21,10 @@ class Profile(models.Model):
     location = models.CharField(blank=True, max_length=50)
     birth_date = models.DateField(null=True, blank=True)
     website = models.URLField(max_length=200, blank=True)
+    role = models.CharField(
+        max_length=250, choices=user_roles,
+        blank=True, null=True
+    )
 
     class Meta:
         """Meta definition for Profile."""
